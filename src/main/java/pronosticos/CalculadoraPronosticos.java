@@ -79,6 +79,16 @@ public class CalculadoraPronosticos {
         return errorPorcentual >= umbral;
     }
 
+    public double suavizacionExponencial(List<Double> serie, double alfa) {
+        double pronostico = serie.get(0);
+
+        for (int i = 1; i < serie.size(); i++) {
+            pronostico += alfa * (serie.get(i) - pronostico);
+        }
+
+        return pronostico;
+    }
+
     private void validarSeries(List<Double> real, List<Double> pronostico) {
         if (real.size() != pronostico.size()) {
             throw new IllegalArgumentException("Las series deben tener el mismo número de periodos");
