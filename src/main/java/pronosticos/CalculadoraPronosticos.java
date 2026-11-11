@@ -78,8 +78,15 @@ public class CalculadoraPronosticos {
         }
         return errorPorcentual >= umbral;
     }
-
+    /**
+     * Pronostica el siguiente periodo mediante suavización exponencial simple.
+     * Parte de la primera demanda y actualiza con F = F + alfa * (D - F).
+     */
     public double suavizacionExponencial(List<Double> serie, double alfa) {
+        if (alfa < 0 || alfa > 1) {
+            throw new IllegalArgumentException("Alfa debe estar entre 0 y 1");
+        }
+
         double pronostico = serie.get(0);
 
         for (int i = 1; i < serie.size(); i++) {
