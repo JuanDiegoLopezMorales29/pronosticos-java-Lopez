@@ -77,7 +77,7 @@ public class CalculadoraPronosticos {
         if (umbral < 0 || umbral > 100) {
             throw new IllegalArgumentException("El umbral debe estar entre 0 y 100");
         }
-        return errorPorcentual >= umbral;
+        return errorPorcentual > umbral;
     }
     /**
      * Pronostica el siguiente periodo mediante suavización exponencial simple.
